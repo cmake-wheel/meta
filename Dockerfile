@@ -95,11 +95,17 @@ COPY --from=pinocchio /wh /wh
 RUN ${PYTHON} -m simple503 -B file:///wh /wh
 RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip wheel --extra-index-url file:///wh -w /wh ${URL}/example-robot-data
 
-FROM main as final
+FROM main as wh
 
 COPY --from=cmeel-example /wh /wh
 COPY --from=example-robot-data /wh /wh
 RUN ${PYTHON} -m simple503 -B file:///wh /wh
 RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip install --extra-index-url file:///wh example-robot-data
 
+FROM python:3.10
+
+COPY --from=wh /wh /wh
+ENV PYTHON=python
+RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip install --extra-index-url file:///wh example-robot-data
 RUN ${PYTHON} -c "import example_robot_data"
+RUN assimp
