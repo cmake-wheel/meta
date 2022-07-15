@@ -91,7 +91,7 @@ COPY --from=urdfdom-headers /wh /wh
 COPY --from=tinyxml /wh /wh
 COPY --from=console-bridge /wh /wh
 RUN ${PYTHON} -m simple503 -B file:///wh /wh
-ADD https://api.github.com/repos/cmake-wheel/cmeel-urdfdom-headers/commits/main .
+ADD https://api.github.com/repos/cmake-wheel/cmeel-urdfdom/commits/main .
 RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip wheel --extra-index-url file:///wh -w /wh ${URL}/cmeel-urdfdom
 
 FROM main as pinocchio
