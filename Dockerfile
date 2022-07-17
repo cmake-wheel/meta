@@ -5,6 +5,8 @@ ARG PYTHON=python3.10
 ENV PYTHON=${PYTHON} URL="git+https://github.com/cmake-wheel"
 RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip install simple503
 
+ENV CTEST_PARALLEL_LEVEL=6
+
 FROM main as cmeel
 
 ADD https://api.github.com/repos/cmake-wheel/cmeel/commits/main .
@@ -33,7 +35,6 @@ RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip wheel --extra-index-
 
 FROM main as eigenpy
 
-COPY --from=cmeel /wh /wh
 COPY --from=eigen /wh /wh
 COPY --from=boost /wh /wh
 RUN ${PYTHON} -m simple503 -B file:///wh /wh
@@ -109,10 +110,20 @@ RUN ${PYTHON} -m simple503 -B file:///wh /wh
 ADD https://api.github.com/repos/cmake-wheel/example-robot-data/commits/cmeel .
 RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip wheel --extra-index-url file:///wh -w /wh ${URL}/example-robot-data
 
+FROM main as eiquadprog
+
+COPY --from=eigen /wh /wh
+COPY --from=boost /wh /wh
+RUN ${PYTHON} -m simple503 -B file:///wh /wh
+ADD https://api.github.com/repos/cmake-wheel/eiquadprog/commits/cmeel .
+RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip wheel --extra-index-url file:///wh -w /wh ${URL}/eiquadprog
+
+
 FROM main as wh
 
 COPY --from=cmeel-example /wh /wh
 COPY --from=example-robot-data /wh /wh
+COPY --from=eiquadprog /wh /wh
 RUN ${PYTHON} -m simple503 -B file:///wh /wh
 RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip install --extra-index-url file:///wh example-robot-data
 

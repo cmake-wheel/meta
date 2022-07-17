@@ -11,7 +11,7 @@ ARG PYTHON=python3.10
 ENV PYTHON=${PYTHON} URL="git+https://github.com/cmake-wheel"
 RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip install simple503
 
-ENV CMEEL_TEMP_DIR=/ws CMAKE_CXX_COMPILER_LAUNCHER=sccache SCCACHE_REDIS=redis://asahi
+ENV CMEEL_TEMP_DIR=/ws CMAKE_CXX_COMPILER_LAUNCHER=sccache SCCACHE_REDIS=redis://asahi CTEST_PARALLEL_LEVEL=6
 
 FROM main as cmeel
 
@@ -51,7 +51,6 @@ RUN --mount=type=cache,target=/root/.cache sccache -s \
 
 FROM main as eigenpy
 
-COPY --from=cmeel /wh /wh
 COPY --from=eigen /wh /wh
 COPY --from=boost /wh /wh
 RUN ${PYTHON} -m simple503 -B file:///wh /wh
@@ -171,10 +170,23 @@ RUN --mount=type=cache,target=/root/.cache sccache -s \
     pin \
  && ${PYTHON} -m pip wheel --no-build-isolation --extra-index-url file:///wh -w /wh .
 
+FROM main as eiquadprog
+
+COPY --from=eigen /wh /wh
+COPY --from=boost /wh /wh
+RUN ${PYTHON} -m simple503 -B file:///wh /wh
+ADD eiquadprog .
+RUN --mount=type=cache,target=/root/.cache sccache -s \
+ && ${PYTHON} -m pip install --extra-index-url file:///wh \
+    cmeel-eigen \
+    cmeel-boost \
+ && ${PYTHON} -m pip wheel --no-build-isolation --extra-index-url file:///wh -w /wh .
+
 FROM main as wh
 
 COPY --from=cmeel-example /wh /wh
 COPY --from=example-robot-data /wh /wh
+COPY --from=eiquadprog /wh /wh
 RUN ${PYTHON} -m simple503 -B file:///wh /wh
 
 FROM python:3.10
