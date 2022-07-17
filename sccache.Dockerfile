@@ -195,6 +195,41 @@ RUN --mount=type=cache,target=/root/.cache sccache -s \
     pin \
  && ${PYTHON} -m pip wheel --no-build-isolation --extra-index-url file:///wh -w /wh .
 
+FROM main as ndcurves
+
+COPY --from=pinocchio /wh /wh
+RUN ${PYTHON} -m simple503 -B file:///wh /wh
+ADD ndcurves .
+RUN --mount=type=cache,target=/root/.cache sccache -s \
+ && ${PYTHON} -m pip install --extra-index-url file:///wh \
+    cmeel-eigen \
+    cmeel-urdfdom-headers \
+    pin \
+ && ${PYTHON} -m pip wheel --no-build-isolation --extra-index-url file:///wh -w /wh .
+
+FROM main as cppad
+
+COPY --from=cmeel /wh /wh
+RUN ${PYTHON} -m simple503 -B file:///wh /wh
+ADD cmeel-cppad .
+RUN --mount=type=cache,target=/root/.cache sccache -s \
+ && ${PYTHON} -m pip install --extra-index-url file:///wh \
+    cmeel \
+ && ${PYTHON} -m pip wheel --no-build-isolation --extra-index-url file:///wh -w /wh .
+
+FROM main as pycppad
+
+COPY --from=eigenpy /wh /wh
+COPY --from=cppad /wh /wh
+RUN ${PYTHON} -m simple503 -B file:///wh /wh
+ADD pycppad .
+RUN --mount=type=cache,target=/root/.cache sccache -s \
+ && ${PYTHON} -m pip install --extra-index-url file:///wh \
+    cmeel-cppad \
+    cmeel-eigen \
+    eigenpy \
+ && ${PYTHON} -m pip wheel --no-build-isolation --extra-index-url file:///wh -w /wh .
+
 FROM main as crocoddyl
 
 COPY --from=example-robot-data /wh /wh
@@ -213,6 +248,8 @@ FROM main as wh
 COPY --from=cmeel-example /wh /wh
 COPY --from=example-robot-data /wh /wh
 COPY --from=tsid /wh /wh
+COPY --from=ndcurves /wh /wh
+COPY --from=cppad /wh /wh
 RUN ${PYTHON} -m simple503 -B file:///wh /wh
 
 FROM python:3.10
