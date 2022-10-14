@@ -1,4 +1,4 @@
-FROM quay.io/pypa/manylinux_2_24_x86_64 as main
+FROM quay.io/pypa/manylinux_2_28_x86_64 as main
 
 ADD https://github.com/mozilla/sccache/releases/download/v0.3.0/sccache-v0.3.0-x86_64-unknown-linux-musl.tar.gz /
 RUN tar xf /sccache-v0.3.0-x86_64-unknown-linux-musl.tar.gz \
@@ -11,7 +11,8 @@ ARG PYTHON=python3.10
 ENV PYTHON=${PYTHON} URL="git+https://github.com/cmake-wheel"
 RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip install simple503
 
-ENV CMEEL_TEMP_DIR=/ws CMAKE_CXX_COMPILER_LAUNCHER=sccache SCCACHE_REDIS=redis://asahi CTEST_PARALLEL_LEVEL=6
+ENV SCCACHE_REDIS=redis://asahi CMAKE_C_COMPILER_LAUNCHER=sccache CMAKE_CXX_COMPILER_LAUNCHER=sccache
+ENV CMEEL_TEMP_DIR=/ws CTEST_PARALLEL_LEVEL=6
 
 FROM main as cmeel
 
@@ -250,16 +251,23 @@ COPY --from=example-robot-data /wh /wh
 COPY --from=tsid /wh /wh
 COPY --from=ndcurves /wh /wh
 COPY --from=cppad /wh /wh
+COPY --from=crocoddyl /wh /wh
 RUN ${PYTHON} -m simple503 -B file:///wh /wh
 
 FROM python:3.10
 
 COPY --from=wh /wh /wh
 ENV PYTHON=python
-RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip install --extra-index-url file:///wh example-robot-data tsid
+RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip install --extra-index-url file:///wh \
+    example-robot-data \
+    ndcurves \
+    tsid \
+    crocoddyl
 RUN ${PYTHON} -c "import eigenpy; assert abs(eigenpy.Quaternion(1, 2, 3, 4).norm() - 5.47722557505) < 1e-7"
 RUN ${PYTHON} -c "import hppfcl; abs(hppfcl.Capsule(2, 3).computeVolume() - 71.2094334814) < 1e-7"
 RUN ${PYTHON} -c "import pinocchio; assert str(pinocchio.SE3.Identity().inverse()), '  R =\n1 0 0\n0 1 0\n0 0 1\n  p = -0 -0 -0\n'"
 RUN ${PYTHON} -c "import example_robot_data as erd; assert erd.load('talos').model.nq == 39"
 RUN ${PYTHON} -c "import tsid"
+RUN ${PYTHON} -c "import ndcurves"
+RUN ${PYTHON} -c "import crocoddyl"
 RUN assimp

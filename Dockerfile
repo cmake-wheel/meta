@@ -118,12 +118,25 @@ RUN ${PYTHON} -m simple503 -B file:///wh /wh
 ADD https://api.github.com/repos/cmake-wheel/eiquadprog/commits/cmeel .
 RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip wheel --extra-index-url file:///wh -w /wh ${URL}/eiquadprog
 
+FROM main as tsid
+
+COPY --from=eiquadprog /wh /wh
+RUN ${PYTHON} -m simple503 -B file:///wh /wh
+ADD https://api.github.com/repos/cmake-wheel/tsid/commits/cmeel .
+RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip wheel --extra-index-url file:///wh -w /wh ${URL}/tsid
+
+FROM main as crocoddyl
+
+COPY --from=example-robot-data /wh /wh
+RUN ${PYTHON} -m simple503 -B file:///wh /wh
+ADD https://api.github.com/repos/cmake-wheel/crocoddyl/commits/cmeel .
+RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip wheel --extra-index-url file:///wh -w /wh ${URL}/crocoddyl
 
 FROM main as wh
 
 COPY --from=cmeel-example /wh /wh
-COPY --from=example-robot-data /wh /wh
-COPY --from=eiquadprog /wh /wh
+COPY --from=crocoddyl /wh /wh
+COPY --from=tsid /wh /wh
 RUN ${PYTHON} -m simple503 -B file:///wh /wh
 RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip install --extra-index-url file:///wh example-robot-data
 
@@ -132,5 +145,6 @@ FROM python:3.10
 COPY --from=wh /wh /wh
 ENV PYTHON=python
 RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip install --extra-index-url file:///wh example-robot-data
-RUN ${PYTHON} -c "import example_robot_data"
+RUN ${PYTHON} -c "import tsid"
+RUN ${PYTHON} -c "import crocoddyl"
 RUN assimp
