@@ -263,11 +263,6 @@ RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip install --extra-inde
     ndcurves \
     tsid \
     crocoddyl
-RUN ${PYTHON} -c "import eigenpy; assert abs(eigenpy.Quaternion(1, 2, 3, 4).norm() - 5.47722557505) < 1e-7"
-RUN ${PYTHON} -c "import hppfcl; abs(hppfcl.Capsule(2, 3).computeVolume() - 71.2094334814) < 1e-7"
-RUN ${PYTHON} -c "import pinocchio; assert str(pinocchio.SE3.Identity().inverse()), '  R =\n1 0 0\n0 1 0\n0 0 1\n  p = -0 -0 -0\n'"
-RUN ${PYTHON} -c "import example_robot_data as erd; assert erd.load('talos').model.nq == 39"
-RUN ${PYTHON} -c "import tsid"
-RUN ${PYTHON} -c "import ndcurves"
-RUN ${PYTHON} -c "import crocoddyl"
+ADD meta/test.py .
+RUN ${PYTHON} test.py
 RUN assimp
