@@ -1,0 +1,23 @@
+name: Tests
+
+on:
+  push:
+  schedule:
+    - cron:  '29 48 8 * *'
+
+jobs:
+  test:
+    name: "Test ${{ matrix.py }} on ${{ matrix.os }}"
+    runs-on: "${{ matrix.os }}-latest"
+    strategy:
+      matrix:
+        os: ["ubuntu", "macos"]
+        py: ["3.8", "3.9", "3.10", "3.11"]
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.py }}
+      - run: python -m pip install crocoddyl tsid
+      - run: python test.py
