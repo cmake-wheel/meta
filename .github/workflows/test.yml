@@ -20,4 +20,6 @@ jobs:
         with:
           python-version: ${{ matrix.py }}
       - run: python -m pip install crocoddyl tsid ndcurves
+        env:
+          PYTHONWARNINGS: error
       - run: python test.py
