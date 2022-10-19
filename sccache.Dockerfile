@@ -7,7 +7,7 @@ RUN tar xf /sccache-v0.3.0-x86_64-unknown-linux-musl.tar.gz \
  && rm -rf /sccache-v0.3.0-x86_64-unknown-linux-musl
 
 WORKDIR /src
-ARG PYTHON=python3.10
+ARG PYTHON=python3.7
 ENV PYTHON=${PYTHON} URL="git+https://github.com/cmake-wheel"
 RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip install simple503
 
