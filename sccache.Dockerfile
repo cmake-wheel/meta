@@ -1,4 +1,4 @@
-FROM quay.io/pypa/manylinux_2_28_x86_64 as main
+FROM quay.io/pypa/manylinux2014_x86_64 as main
 
 ADD https://github.com/mozilla/sccache/releases/download/v0.3.0/sccache-v0.3.0-x86_64-unknown-linux-musl.tar.gz /
 RUN tar xf /sccache-v0.3.0-x86_64-unknown-linux-musl.tar.gz \
