@@ -135,8 +135,8 @@ RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip wheel --extra-index-
 FROM main as wh
 
 COPY --from=cmeel-example /wh /wh
-COPY --from=crocoddyl /wh /wh
 COPY --from=tsid /wh /wh
+COPY --from=crocoddyl /wh /wh
 RUN ${PYTHON} -m simple503 -B file:///wh /wh
 RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip install --extra-index-url file:///wh example-robot-data
 
@@ -145,6 +145,6 @@ FROM python:3.10
 COPY --from=wh /wh /wh
 ENV PYTHON=python
 RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip install --extra-index-url file:///wh example-robot-data
-RUN ${PYTHON} -c "import tsid"
-RUN ${PYTHON} -c "import crocoddyl"
+ADD meta/test.py .
+RUN ${PYTHON} test.py
 RUN assimp

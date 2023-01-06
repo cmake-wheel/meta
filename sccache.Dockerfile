@@ -208,7 +208,6 @@ RUN --mount=type=cache,target=/root/.cache sccache -s \
 FROM main as wh
 
 COPY --from=cmeel-example /wh /wh
-COPY --from=example-robot-data /wh /wh
 COPY --from=tsid /wh /wh
 COPY --from=ndcurves /wh /wh
 COPY --from=cppad /wh /wh
@@ -222,4 +221,4 @@ ENV PYTHON=python
 RUN ${PYTHON} -m pip install --extra-index-url file:///wh /wh/*.whl
 ADD meta/test.py .
 RUN ${PYTHON} test.py
-#RUN assimp
+RUN assimp
