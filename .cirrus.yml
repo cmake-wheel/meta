@@ -10,5 +10,5 @@ macos_arm64_task:
   install_wheels_script:
     - python -m pip install -U pip
     - python -m pip install crocoddyl tsid ndcurves
-  run_tests:
+  run_tests_script:
     - python test.py
