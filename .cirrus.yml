@@ -4,12 +4,11 @@ macos_arm64_task:
     image: ghcr.io/cirruslabs/macos-monterey-xcode
   env:
     PATH: /opt/homebrew/opt/python@3.10/bin:$PATH
-    CIBW_REPAIR_WHEEL_COMMAND: ""
   install_pre_requirements_script:
     - brew install python@3.10
     - ln -s python3 /opt/homebrew/opt/python@3.10/bin/python
   install_wheels_script:
     - python -m pip install -U pip
     - python -m pip install crocoddyl tsid ndcurves
-  run_cibuildwheel_script:
+  run_tests:
     - python test.py
