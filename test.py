@@ -49,6 +49,7 @@ class MetaTest(unittest.TestCase):
     def test_tsid(self):
         import tsid
 
+    @unittest.skip("need a new release")
     def test_crocoddyl(self):
         import crocoddyl
 
