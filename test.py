@@ -25,8 +25,8 @@ class MetaTest(unittest.TestCase):
         )
 
     def test_ndcurves(self):
-        import numpy as np
         import ndcurves
+        import numpy as np
 
         self.assertTrue(ndcurves.CURVES_WITH_PINOCCHIO_SUPPORT)
         rot_init = ndcurves.Quaternion.Identity().matrix()
@@ -49,9 +49,13 @@ class MetaTest(unittest.TestCase):
     def test_tsid(self):
         import tsid
 
+        self.assertTrue(hasattr(tsid, "TaskComEquality"))
+
     @unittest.skip("need a new release")
     def test_crocoddyl(self):
         import crocoddyl
+
+        self.assertTrue(hasattr(crocoddyl, "ActionDataAbstract"))
 
 
 if __name__ == "__main__":
