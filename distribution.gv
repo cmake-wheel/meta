@@ -1,63 +1,63 @@
 digraph {
-	"cmeel-example" [label="cmeel-example v0.5.3"]
+	"cmeel-example" [label="cmeel-example v0.5.3" URL="https://github.com/cmake-wheel/cmeel-example"]
 	cmeel -> "cmeel-example"
-	"cmeel-boost" [label="cmeel-boost v1.82.0"]
+	"cmeel-boost" [label="cmeel-boost v1.82.0" URL="https://github.com/cmake-wheel/cmeel-boost"]
 	cmeel -> "cmeel-boost"
 	numpy -> "cmeel-boost"
-	"cmeel-eigen" [label="cmeel-eigen v3.4.0.1"]
+	"cmeel-eigen" [label="cmeel-eigen v3.4.0.1" URL="https://github.com/cmake-wheel/cmeel-eigen"]
 	cmeel -> "cmeel-eigen"
-	eigenpy [label="eigenpy v3.1.0"]
+	eigenpy [label="eigenpy v3.1.0" URL="https://github.com/cmake-wheel/eigenpy"]
 	"cmeel-boost" -> eigenpy
 	"cmeel-eigen" -> eigenpy
 	cmeel -> eigenpy
-	"hpp-fcl" [label="hpp-fcl v2.3.4"]
+	"hpp-fcl" [label="hpp-fcl v2.3.4" URL="https://github.com/cmake-wheel/hpp-fcl"]
 	"cmeel-assimp" -> "hpp-fcl"
 	"cmeel-octomap" -> "hpp-fcl"
 	cmeel -> "hpp-fcl"
 	eigenpy -> "hpp-fcl"
-	"cmeel-assimp" [label="cmeel-assimp v5.2.5.1"]
+	"cmeel-assimp" [label="cmeel-assimp v5.2.5.1" URL="https://github.com/cmake-wheel/cmeel-assimp"]
 	cmeel -> "cmeel-assimp"
-	"cmeel-octomap" [label="cmeel-octomap v1.9.8.2"]
+	"cmeel-octomap" [label="cmeel-octomap v1.9.8.2" URL="https://github.com/cmake-wheel/cmeel-octomap"]
 	cmeel -> "cmeel-octomap"
-	"cmeel-urdfdom-headers" [label="cmeel-urdfdom-headers v1.1.0"]
+	"cmeel-urdfdom-headers" [label="cmeel-urdfdom-headers v1.1.0" URL="https://github.com/cmake-wheel/cmeel-urdfdom-headers"]
 	cmeel -> "cmeel-urdfdom-headers"
-	"cmeel-urdfdom" [label="cmeel-urdfdom v3.1.0.3"]
+	"cmeel-urdfdom" [label="cmeel-urdfdom v3.1.0.3" URL="https://github.com/cmake-wheel/cmeel-urdfdom"]
 	"cmeel-console-bridge" -> "cmeel-urdfdom"
 	"cmeel-tinyxml" -> "cmeel-urdfdom"
 	"cmeel-urdfdom-headers" -> "cmeel-urdfdom"
 	cmeel -> "cmeel-urdfdom"
-	"cmeel-console-bridge" [label="cmeel-console-bridge v1.0.2.2"]
+	"cmeel-console-bridge" [label="cmeel-console-bridge v1.0.2.2" URL="https://github.com/cmake-wheel/cmeel-console-bridge"]
 	cmeel -> "cmeel-console-bridge"
-	"cmeel-tinyxml" [label="cmeel-tinyxml v2.6.2.2"]
+	"cmeel-tinyxml" [label="cmeel-tinyxml v2.6.2.2" URL="https://github.com/cmake-wheel/cmeel-tinyxml"]
 	cmeel -> "cmeel-tinyxml"
-	pin [label="pin v2.6.18"]
+	pin [label="pin v2.6.18" URL="https://github.com/cmake-wheel/pinocchio"]
 	"cmeel-urdfdom" -> pin
 	cmeel -> pin
 	"hpp-fcl" -> pin
-	"example-robot-data" [label="example-robot-data v4.0.7"]
+	"example-robot-data" [label="example-robot-data v4.0.7" URL="https://github.com/cmake-wheel/example-robot-data"]
 	cmeel -> "example-robot-data"
 	pin -> "example-robot-data"
-	tsid [label="tsid v1.7.0"]
+	tsid [label="tsid v1.7.0" URL="https://github.com/cmake-wheel/tsid"]
 	cmeel -> tsid
 	eiquadprog -> tsid
 	pin -> tsid
-	crocoddyl [label="crocoddyl v2.0.0"]
+	crocoddyl [label="crocoddyl v2.0.0" URL="https://github.com/cmake-wheel/crocoddyl"]
 	cmeel -> crocoddyl
 	"example-robot-data" -> crocoddyl
 	scipy -> crocoddyl
-	eiquadprog [label="eiquadprog v1.2.6"]
+	eiquadprog [label="eiquadprog v1.2.6" URL="https://github.com/cmake-wheel/eiquadprog"]
 	"cmeel-boost" -> eiquadprog
 	"cmeel-eigen" -> eiquadprog
 	cmeel -> eiquadprog
-	ndcurves [label="ndcurves v1.3.0"]
+	ndcurves [label="ndcurves v1.3.0" URL="https://github.com/cmake-wheel/ndcurves"]
 	cmeel -> ndcurves
 	pin -> ndcurves
-	"cmeel-cppad" [label="cmeel-cppad v20230000.0"]
+	"cmeel-cppad" [label="cmeel-cppad v20230000.0" URL="https://github.com/cmake-wheel/cmeel-cppad"]
 	cmeel -> "cmeel-cppad"
-	"cmeel-cppadcodegen" [label="cmeel-cppadcodegen v2.4.3"]
+	"cmeel-cppadcodegen" [label="cmeel-cppadcodegen v2.4.3" URL="https://github.com/cmake-wheel/cmeel-cppadcodegen"]
 	"cmeel-cppad" -> "cmeel-cppadcodegen"
 	cmeel -> "cmeel-cppadcodegen"
-	"pin3-slam" [label="pin3-slam v1.6"]
+	"pin3-slam" [label="pin3-slam v1.6" URL="https://github.com/cmake-wheel/pin3-slam"]
 	cmeel -> "pin3-slam"
 	"cmeel-boost" -> "pin3-slam"
 	"cmeel-console-bridge" -> "pin3-slam"
@@ -67,17 +67,17 @@ digraph {
 	"cmeel-urdfdom-headers" -> "pin3-slam"
 	"hpp-fcl" -> "pin3-slam"
 	casadi -> "pin3-slam"
-	"cmeel-simde" [label="cmeel-simde v0.7.2"]
+	"cmeel-simde" [label="cmeel-simde v0.7.2" URL="https://github.com/cmake-wheel/cmeel-simde"]
 	cmeel -> "cmeel-simde"
-	"cmeel-lapack" [label="cmeel-lapack v3.11.0"]
+	"cmeel-lapack" [label="cmeel-lapack v3.11.0" URL="https://github.com/cmake-wheel/cmeel-lapack"]
 	cmeel -> "cmeel-lapack"
-	"cmeel-yaml-cpp" [label="cmeel-yaml-cpp v0.7.0"]
+	"cmeel-yaml-cpp" [label="cmeel-yaml-cpp v0.7.0" URL="https://github.com/cmake-wheel/cmeel-yaml-cpp"]
 	cmeel -> "cmeel-yaml-cpp"
-	"cmeel-openblas" [label="cmeel-openblas v0.3.23"]
+	"cmeel-openblas" [label="cmeel-openblas v0.3.23" URL="https://github.com/cmake-wheel/cmeel-openblas"]
 	cmeel -> "cmeel-openblas"
-	proxsuite [label="proxsuite v0.0.0"]
+	proxsuite [label="proxsuite v0.0.0" URL="https://github.com/Simple-Robotics/proxqp"]
 	cmeel -> proxsuite
-	proxsuite [label="proxsuite v0.4.0"]
+	proxsuite [label="proxsuite v0.4.0" URL="https://github.com/Simple-Robotics/proxsuite"]
 	cmeel -> proxsuite
 	"cmeel-eigen" -> proxsuite
 	"cmeel-simde" -> proxsuite

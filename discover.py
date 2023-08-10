@@ -86,7 +86,7 @@ def main(token, orgs):
     pprint(repos)
     dot = graphviz.Digraph(format="svg")
     for repo in repos:
-        dot.node(repo.name, str(repo))
+        dot.node(repo.name, label=str(repo), URL=repo.source)
         for dep in repo.build_deps:
             dot.edge(dep, repo.name)
     dot.render("distribution.gv")
