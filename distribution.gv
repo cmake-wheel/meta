@@ -87,17 +87,6 @@ py3" URL="https://github.com/cmake-wheel/cmeel-cppad"]
 any" URL="https://github.com/cmake-wheel/cmeel-cppadcodegen"]
 	"cmeel-cppad" -> "cmeel-cppadcodegen"
 	cmeel -> "cmeel-cppadcodegen"
-	"pin3-slam" [label="pin3-slam
-1.6" URL="https://github.com/cmake-wheel/pin3-slam"]
-	cmeel -> "pin3-slam"
-	"cmeel-boost" -> "pin3-slam"
-	"cmeel-console-bridge" -> "pin3-slam"
-	"cmeel-eigen" -> "pin3-slam"
-	"cmeel-tinyxml" -> "pin3-slam"
-	"cmeel-urdfdom" -> "pin3-slam"
-	"cmeel-urdfdom-headers" -> "pin3-slam"
-	"hpp-fcl" -> "pin3-slam"
-	casadi -> "pin3-slam"
 	"cmeel-simde" [label="cmeel-simde
 0.7.2
 any" URL="https://github.com/cmake-wheel/cmeel-simde"]

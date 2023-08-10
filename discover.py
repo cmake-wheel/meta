@@ -89,6 +89,9 @@ def main(token, orgs):
             if repo["visibility"] != "public":
                 LOG.info(f"ignoring non public repo: {repo['name']}")
                 continue
+            if repo["archived"]:
+                LOG.info(f"ignoring archived repo: {repo['name']}")
+                continue
             url = repo["contents_url"].replace("{+path}", "pyproject.toml")
             resp = httpx.get(url, headers=headers)
             if resp.status_code != 200:
