@@ -75,8 +75,6 @@ digraph {
 	cmeel -> "cmeel-yaml-cpp"
 	"cmeel-openblas" [label="cmeel-openblas v0.3.23" URL="https://github.com/cmake-wheel/cmeel-openblas"]
 	cmeel -> "cmeel-openblas"
-	proxsuite [label="proxsuite v0.0.0" URL="https://github.com/Simple-Robotics/proxqp"]
-	cmeel -> proxsuite
 	proxsuite [label="proxsuite v0.4.0" URL="https://github.com/Simple-Robotics/proxsuite"]
 	cmeel -> proxsuite
 	"cmeel-eigen" -> proxsuite

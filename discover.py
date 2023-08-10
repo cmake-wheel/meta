@@ -64,6 +64,9 @@ def main(token, orgs):
             LOG.error(f"Can't get {org} repos: {resp}")
             continue
         for repo in resp.json():
+            if repo["visibility"] != "public":
+                LOG.info(f"ignoring non public repo: {repo['name']}")
+                continue
             url = repo["contents_url"].replace("{+path}", "pyproject.toml")
             resp = httpx.get(url, headers=headers)
             if resp.status_code != 200:
