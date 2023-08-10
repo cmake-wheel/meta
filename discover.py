@@ -81,36 +81,45 @@ def main(token, orgs):
     headers = {"Authorization": f"Bearer {token}"}
     repos = []
     for org in orgs:
-        resp = httpx.get(f"{API}/orgs/{org}/repos", headers=headers)
-        if resp.status_code != 200:
-            LOG.error(f"Can't get {org} repos: {resp}")
-            continue
-        for repo in resp.json():
-            if repo["visibility"] != "public":
-                LOG.info(f"ignoring non public repo: {repo['name']}")
-                continue
-            if repo["archived"]:
-                LOG.info(f"ignoring archived repo: {repo['name']}")
-                continue
-            url = repo["contents_url"].replace("{+path}", "pyproject.toml")
-            resp = httpx.get(url, headers=headers)
+        page = 1
+        while page:
+            resp = httpx.get(
+                f"{API}/orgs/{org}/repos", params={"page": page}, headers=headers
+            )
             if resp.status_code != 200:
-                LOG.info(f"Can't get {url}: {resp}")
+                LOG.error(f"Can't get {org} repos page {page}: {resp}")
                 continue
-            pyproject = loads(b64decode(resp.json()["content"]).decode())
-            if "build-system" not in pyproject:
-                LOG.info(f"{org}/{repo['name']} has no pyproject.toml")
+            if not resp.json():
+                LOG.info(f"{org} repos page {page} is empty")
+                page = False
                 continue
-            if "build-backend" not in pyproject["build-system"]:
-                LOG.error(
-                    f"{org}/{repo['name']} pyproject.toml "
-                    "build-backend has no build-system"
-                )
-                continue
-            if "cmeel" not in pyproject["build-system"]["build-backend"]:
-                LOG.info(f"{org}/{repo['name']} pyproject is not cmeel based")
-            else:
-                repos.append(Pkg.from_pyproject(repo["html_url"], pyproject))
+            for repo in resp.json():
+                if repo["visibility"] != "public":
+                    LOG.info(f"ignoring non public repo: {repo['name']}")
+                    continue
+                if repo["archived"]:
+                    LOG.info(f"ignoring archived repo: {repo['name']}")
+                    continue
+                url = repo["contents_url"].replace("{+path}", "pyproject.toml")
+                resp = httpx.get(url, headers=headers)
+                if resp.status_code != 200:
+                    LOG.info(f"Can't get {url}: {resp}")
+                    continue
+                pyproject = loads(b64decode(resp.json()["content"]).decode())
+                if "build-system" not in pyproject:
+                    LOG.info(f"{org}/{repo['name']} has no pyproject.toml")
+                    continue
+                if "build-backend" not in pyproject["build-system"]:
+                    LOG.error(
+                        f"{org}/{repo['name']} pyproject.toml "
+                        "build-backend has no build-system"
+                    )
+                    continue
+                if "cmeel" not in pyproject["build-system"]["build-backend"]:
+                    LOG.info(f"{org}/{repo['name']} pyproject is not cmeel based")
+                else:
+                    repos.append(Pkg.from_pyproject(repo["html_url"], pyproject))
+            page += 1
     pprint(repos)
     dot = graphviz.Digraph(format="svg")
     for repo in repos:

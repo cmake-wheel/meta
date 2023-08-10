@@ -103,6 +103,100 @@ py3" URL="https://github.com/cmake-wheel/cmeel-yaml-cpp"]
 0.3.23
 py3" URL="https://github.com/cmake-wheel/cmeel-openblas"]
 	cmeel -> "cmeel-openblas"
+	"cmeel-tinyxml2" [label="cmeel-tinyxml2
+9.0.0
+py3" URL="https://github.com/cmake-wheel/cmeel-tinyxml2"]
+	cmeel -> "cmeel-tinyxml2"
+	"cmeel-gmp" [label="cmeel-gmp
+6.2.1
+py3" URL="https://github.com/cmake-wheel/cmeel-gmp"]
+	cmeel -> "cmeel-gmp"
+	"cmeel-texinfo" [label="cmeel-texinfo
+7.0.3
+py3" URL="https://github.com/cmake-wheel/cmeel-texinfo"]
+	cmeel -> "cmeel-texinfo"
+	"cmeel-gperf" [label="cmeel-gperf
+3.1
+py3" URL="https://github.com/cmake-wheel/cmeel-gperf"]
+	"cmeel-texinfo" -> "cmeel-gperf"
+	cmeel -> "cmeel-gperf"
+	"cmeel-gettext" [label="cmeel-gettext
+0.22
+py3" URL="https://github.com/cmake-wheel/cmeel-gettext"]
+	"cmeel-automake" -> "cmeel-gettext"
+	"cmeel-texinfo" -> "cmeel-gettext"
+	cmeel -> "cmeel-gettext"
+	"cmeel-mpfr" [label="cmeel-mpfr
+4.2.0
+py3" URL="https://github.com/cmake-wheel/cmeel-mpfr"]
+	"cmeel-gmp" -> "cmeel-mpfr"
+	"cmeel-texinfo" -> "cmeel-mpfr"
+	cmeel -> "cmeel-mpfr"
+	"cmeel-mpc" [label="cmeel-mpc
+1.3.1
+py3" URL="https://github.com/cmake-wheel/cmeel-mpc"]
+	"cmeel-gmp" -> "cmeel-mpc"
+	"cmeel-mpfr" -> "cmeel-mpc"
+	"cmeel-texinfo" -> "cmeel-mpc"
+	cmeel -> "cmeel-mpc"
+	"cmeel-metis" [label="cmeel-metis
+5.1.0
+py3" URL="https://github.com/cmake-wheel/cmeel-metis"]
+	cmeel -> "cmeel-metis"
+	"cmeel-hwloc" [label="cmeel-hwloc
+2.9.2
+py3" URL="https://github.com/cmake-wheel/cmeel-hwloc"]
+	cmeel -> "cmeel-hwloc"
+	"cmeel-spral" [label="cmeel-spral
+2023.03.29
+py3" URL="https://github.com/cmake-wheel/cmeel-spral"]
+	"cmeel-hwloc" -> "cmeel-spral"
+	"cmeel-metis" -> "cmeel-spral"
+	"cmeel-openblas" -> "cmeel-spral"
+	cmeel -> "cmeel-spral"
+	"pin3x-jnrh2023" [label="pin3x-jnrh2023
+2.9.2" URL="https://github.com/cmake-wheel/pin3x-jnrh"]
+	cmeel -> "pin3x-jnrh2023"
+	"cmeel-boost" -> "pin3x-jnrh2023"
+	"cmeel-console-bridge" -> "pin3x-jnrh2023"
+	"cmeel-tinyxml" -> "pin3x-jnrh2023"
+	"cmeel-urdfdom-headers" -> "pin3x-jnrh2023"
+	"cmeel-urdfdom" -> "pin3x-jnrh2023"
+	casadi -> "pin3x-jnrh2023"
+	"cmeel-eigen" -> "pin3x-jnrh2023"
+	"cmeel-assimp" -> "pin3x-jnrh2023"
+	"cmeel-octomap" -> "pin3x-jnrh2023"
+	numpy -> "pin3x-jnrh2023"
+	"cmeel-help2man" [label="cmeel-help2man
+1.49.3
+py3" URL="https://github.com/cmake-wheel/cmeel-help2man"]
+	"cmeel-texinfo" -> "cmeel-help2man"
+	cmeel -> "cmeel-help2man"
+	"cmeel-m4" [label="cmeel-m4
+1.4.19
+py3" URL="https://github.com/cmake-wheel/cmeel-m4"]
+	"cmeel-automake" -> "cmeel-m4"
+	"cmeel-gettext" -> "cmeel-m4"
+	"cmeel-gperf" -> "cmeel-m4"
+	"cmeel-help2man" -> "cmeel-m4"
+	"cmeel-texinfo" -> "cmeel-m4"
+	cmeel -> "cmeel-m4"
+	"cmeel-autoconf" [label="cmeel-autoconf
+2.71
+py3" URL="https://github.com/cmake-wheel/cmeel-autoconf"]
+	cmeel -> "cmeel-autoconf"
+	"cmeel-automake" [label="cmeel-automake
+1.16.5
+py3" URL="https://github.com/cmake-wheel/cmeel-automake"]
+	cmeel -> "cmeel-automake"
+	"cmeel-libgfortran" [label="cmeel-libgfortran
+13.1.0
+py3" URL="https://github.com/cmake-wheel/cmeel-libgfortran"]
+	"cmeel-gmp" -> "cmeel-libgfortran"
+	"cmeel-mpc" -> "cmeel-libgfortran"
+	"cmeel-mpfr" -> "cmeel-libgfortran"
+	"cmeel-texinfo" -> "cmeel-libgfortran"
+	cmeel -> "cmeel-libgfortran"
 	proxsuite [label="proxsuite
 0.4.0" URL="https://github.com/Simple-Robotics/proxsuite"]
 	cmeel -> proxsuite
