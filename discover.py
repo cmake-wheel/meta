@@ -12,15 +12,22 @@ from tomllib import loads
 import graphviz
 import httpx
 
-# from tqdm import tqdm
-
-
 API = "https://api.github.com"
 ORGS = [
     "cmake-wheel",
     "simple-robotics",
 ]
 LOG = logging.getLogger("cmeel.meta.discover")
+
+
+def dotget(data, key, default):
+    """get key in data or default."""
+    for part in key.split("."):
+        if part in data:
+            data = data[part]
+        else:
+            return default
+    return data
 
 
 @dataclass
@@ -30,9 +37,21 @@ class Pkg:
     version: str
     deps: [str]
     build_deps: [str]
+    any: bool
+    pyver: bool
+    py3: bool
 
     def __str__(self):
-        return f"{self.name} v{self.version}"
+        return "\n".join([self.name, self.version, self.special()]).strip()
+
+    def special(self) -> str:
+        if self.any:
+            return "any"
+        if self.pyver:
+            return "pyver"
+        if self.py3:
+            return "py3"
+        return ""
 
     @staticmethod
     def from_pyproject(source, pyproject):
@@ -51,6 +70,9 @@ class Pkg:
             version=pyproject["project"]["version"],
             deps=deps,
             build_deps=build_deps,
+            any=dotget(pyproject, "tool.cmeel.any", False),
+            pyver=dotget(pyproject, "tool.cmeel.pyver-any", False),
+            py3=dotget(pyproject, "tool.cmeel.py3-none", False),
         )
 
 
