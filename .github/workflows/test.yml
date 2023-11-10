@@ -1,9 +1,7 @@
-name: Tests
+name: Tests CPython 3.8 on macos
 
 on:
   push:
-  schedule:
-    - cron: "29 4 * * 0,3"
 
 jobs:
   test:
@@ -11,18 +9,34 @@ jobs:
     runs-on: "${{ matrix.os }}-latest"
     strategy:
       matrix:
-        os: ["ubuntu", "macos"]
-        py: ["3.8", "3.9", "3.10", "3.11"]
-        exclude:
-          - os: "macos"
-            py: "3.8"
+        os: ["macos"]
+        py: ["3.8", "3.9"]
     steps:
       - uses: actions/checkout@v3
 
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.py }}
-      - run: python -m pip install crocoddyl tsid ndcurves
-      - run: python test.py
-        env:
-          PYTHONWARNINGS: error
+
+      - run: python -m pip install -U pip
+
+      - run: git clone --recursive https://github.com/cmake-wheel/cmeel-boost
+      - run: cd cmeel-boost && python -m pip wheel -vw ../wh
+
+      - run: git clone --recursive https://github.com/cmake-wheel/cmeel-eigen
+      - run: cd cmeel-eigen && python -m pip wheel -vw ../wh
+
+      - run: git clone --recursive https://github.com/cmake-wheel/cmeel-assimp
+      - run: cd cmeel-assimp && python -m pip wheel -vw ../wh
+
+      - run: git clone --recursive https://github.com/cmake-wheel/cmeel-octomap
+      - run: cd cmeel-octomap && python -m pip wheel -vw ../wh
+
+      - run: git clone --recursive https://github.com/cmake-wheel/cmeel-qhull
+      - run: cd cmeel-qhull && python -m pip wheel -vw ../wh
+
+      - run: git clone --recursive https://github.com/cmake-wheel/eigenpy
+      - run: cd eigenpy && python -m pip wheel -vw ../wh
+
+      - run: git clone --recursive https://github.com/cmake-wheel/hpp-fcl
+      - run: cd hpp-fcl && python -m pip wheel -vw ../wh
