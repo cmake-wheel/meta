@@ -19,25 +19,33 @@ jobs:
           python-version: ${{ matrix.py }}
 
       - run: python -m pip install -U pip
+      - run: python -m pip install simple503
 
       - run: git clone --recursive https://github.com/cmake-wheel/cmeel-boost
       - run: git -C cmeel-boost reset --hard 8ec749c708ff76e47a5c0cadfa83d912a5ce5665  # pre 1.83
-      - run: python -m pip wheel -vw wh ./cmeel-boost
+      - run: python -m pip wheel --extra-index-url file:///tmp/wh -vw /tmp/wh ./cmeel-boost
+      - run: python -m simple503 -B file:///tmp/wh /tmp/wh
 
       - run: git clone --recursive https://github.com/cmake-wheel/cmeel-eigen
-      - run: python -m pip wheel -vw wh ./cmeel-eigen
+      - run: python -m pip wheel --extra-index-url file:///tmp/wh -vw /tmp/wh ./cmeel-eigen
+      - run: python -m simple503 -B file:///tmp/wh /tmp/wh
 
       - run: git clone --recursive https://github.com/cmake-wheel/eigenpy
-      - run: python -m pip wheel -vw wh ./eigenpy
+      - run: python -m pip wheel --extra-index-url file:///tmp/wh -vw /tmp/wh ./eigenpy
+      - run: python -m simple503 -B file:///tmp/wh /tmp/wh
 
       - run: git clone --recursive https://github.com/cmake-wheel/cmeel-assimp
-      - run: python -m pip wheel -vw wh ./cmeel-assimp
+      - run: python -m pip wheel --extra-index-url file:///tmp/wh -vw /tmp/wh ./cmeel-assimp
+      - run: python -m simple503 -B file:///tmp/wh /tmp/wh
 
       - run: git clone --recursive https://github.com/cmake-wheel/cmeel-octomap
-      - run: python -m pip wheel -vw wh ./cmeel-octomap
+      - run: python -m pip wheel --extra-index-url file:///tmp/wh -vw /tmp/wh ./cmeel-octomap
+      - run: python -m simple503 -B file:///tmp/wh /tmp/wh
 
       - run: git clone --recursive https://github.com/cmake-wheel/cmeel-qhull
-      - run: python -m pip wheel -vw wh ./cmeel-qhull
+      - run: python -m pip wheel --extra-index-url file:///tmp/wh -vw /tmp/wh ./cmeel-qhull
+      - run: python -m simple503 -B file:///tmp/wh /tmp/wh
 
       - run: git clone --recursive https://github.com/cmake-wheel/hpp-fcl
-      - run: python -m pip wheel -vw wh ./hpp-fcl
+      - run: python -m pip wheel --extra-index-url file:///tmp/wh -vw /tmp/wh ./hpp-fcl
+      - run: python -m simple503 -B file:///tmp/wh /tmp/wh
