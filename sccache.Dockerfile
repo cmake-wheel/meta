@@ -1,13 +1,13 @@
-FROM quay.io/pypa/manylinux2014_x86_64 as main
+FROM quay.io/pypa/manylinux_2_28_x86_64 as main
 
-ADD https://github.com/mozilla/sccache/releases/download/v0.3.0/sccache-v0.3.0-x86_64-unknown-linux-musl.tar.gz /
-RUN tar xf /sccache-v0.3.0-x86_64-unknown-linux-musl.tar.gz \
- && chmod +x /sccache-v0.3.0-x86_64-unknown-linux-musl/sccache \
- && mv /sccache-v0.3.0-x86_64-unknown-linux-musl/sccache /usr/local/bin \
- && rm -rf /sccache-v0.3.0-x86_64-unknown-linux-musl
+ADD https://github.com/mozilla/sccache/releases/download/v0.7.2/sccache-v0.7.2-x86_64-unknown-linux-musl.tar.gz /
+RUN tar xf /sccache-v0.7.2-x86_64-unknown-linux-musl.tar.gz \
+ && chmod +x /sccache-v0.7.2-x86_64-unknown-linux-musl/sccache \
+ && mv /sccache-v0.7.2-x86_64-unknown-linux-musl/sccache /usr/local/bin \
+ && rm -rf /sccache-v0.7.2-x86_64-unknown-linux-musl
 
 WORKDIR /src
-ARG PYTHON=python3.10
+ARG PYTHON=python3.12
 ENV PYTHON=${PYTHON} URL="git+https://github.com/cmake-wheel"
 RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip install simple503
 
@@ -76,11 +76,21 @@ RUN --mount=type=cache,target=/root/.cache sccache -s \
  && ${PYTHON} -m pip install --extra-index-url file:///wh /wh/*.whl \
  && ${PYTHON} -m pip wheel --no-build-isolation --extra-index-url file:///wh -w /wh .
 
+FROM main as qhull
+
+COPY --from=cmeel /wh /wh
+RUN ${PYTHON} -m simple503 -B file:///wh /wh
+ADD cmeel-qhull .
+RUN --mount=type=cache,target=/root/.cache sccache -s \
+ && ${PYTHON} -m pip install --extra-index-url file:///wh /wh/*.whl \
+ && ${PYTHON} -m pip wheel --no-build-isolation --extra-index-url file:///wh -w /wh .
+
 FROM main as hpp-fcl
 
 COPY --from=assimp /wh /wh
 COPY --from=octomap /wh /wh
 COPY --from=eigenpy /wh /wh
+COPY --from=qhull /wh /wh
 RUN ${PYTHON} -m simple503 -B file:///wh /wh
 ADD hpp-fcl .
 RUN --mount=type=cache,target=/root/.cache sccache -s \
@@ -159,6 +169,7 @@ RUN --mount=type=cache,target=/root/.cache sccache -s \
 
 FROM main as tsid
 
+COPY --from=eigen /wh /wh
 COPY --from=eiquadprog /wh /wh
 COPY --from=pinocchio /wh /wh
 RUN ${PYTHON} -m simple503 -B file:///wh /wh
@@ -203,6 +214,7 @@ ADD crocoddyl .
 ENV CMEEL_JOBS=6
 RUN --mount=type=cache,target=/root/.cache sccache -s \
  && ${PYTHON} -m pip install --extra-index-url file:///wh /wh/*.whl \
+ && ${PYTHON} -m pip install scipy \
  && ${PYTHON} -m pip wheel --no-build-isolation --extra-index-url file:///wh -w /wh .
 
 FROM main as wh
@@ -214,10 +226,11 @@ COPY --from=cppad /wh /wh
 COPY --from=crocoddyl /wh /wh
 RUN ${PYTHON} -m simple503 -B file:///wh /wh
 
-FROM python:3.10
+FROM python:3.12
 
 COPY --from=wh /wh /wh
 ENV PYTHON=python
+RUN ${PYTHON} -m pip install -U pip
 RUN ${PYTHON} -m pip install --extra-index-url file:///wh /wh/*.whl
 ADD meta/test.py .
 RUN ${PYTHON} test.py
