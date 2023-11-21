@@ -6,7 +6,6 @@ import logging
 import os
 from base64 import b64decode
 from dataclasses import dataclass
-from pprint import pprint
 from subprocess import check_output
 from tomllib import loads
 from typing import List
@@ -127,7 +126,6 @@ def main(token, orgs):
                 else:
                     repos.append(Pkg.from_pyproject(repo["html_url"], pyproject))
             page += 1
-    pprint(repos)
     dot = graphviz.Digraph(format="svg")
     for repo in repos:
         dot.node(repo.name, label=str(repo), URL=repo.source)
