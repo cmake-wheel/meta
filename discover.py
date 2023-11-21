@@ -64,10 +64,15 @@ class Pkg:
             if "dependencies" in pyproject["project"]
             else []
         )
+        version = dotget(
+            pyproject,
+            "tool.cmeel.upstream-version",
+            dotget(pyproject, "project.version", "0.0.0"),
+        )
         return Pkg(
             source=source,
             name=pyproject["project"]["name"],
-            version=pyproject["project"]["version"],
+            version=version,
             deps=deps,
             build_deps=build_deps,
             any=dotget(pyproject, "tool.cmeel.any", False),
