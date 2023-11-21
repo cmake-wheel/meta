@@ -5,6 +5,7 @@ import argparse
 import logging
 import os
 from base64 import b64decode
+from subprocess import check_output
 from dataclasses import dataclass
 from pprint import pprint
 from tomllib import loads
@@ -145,4 +146,14 @@ if __name__ == "__main__":
     else:
         level = 30 - 10 * args.verbose
     logging.basicConfig(level=level)
-    main(args.token or os.environ["GITHUB_TOKEN"], args.orgs)
+    main(
+        args.token
+        or os.environ.get(
+            "GITHUB_TOKEN",
+            check_output(
+                os.environ.get("GITHUB_TOKEN_CMD", "rbw get github-token").split(),
+                text=True,
+            ).strip(),
+        ),
+        args.orgs,
+    )
