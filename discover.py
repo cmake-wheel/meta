@@ -5,9 +5,9 @@ import argparse
 import logging
 import os
 from base64 import b64decode
-from subprocess import check_output
 from dataclasses import dataclass
 from pprint import pprint
+from subprocess import check_output
 from tomllib import loads
 
 import graphviz
