@@ -8,7 +8,7 @@ from base64 import b64decode
 from dataclasses import dataclass
 from subprocess import check_output
 from tomllib import loads
-from typing import List
+from typing import Set
 
 import graphviz
 import httpx
@@ -36,8 +36,8 @@ class Pkg:
     source: str
     name: str
     version: str
-    deps: List[str]
-    build_deps: List[str]
+    deps: Set[str]
+    build_deps: Set[str]
     any: bool
     pyver: bool
     py3: bool
@@ -74,8 +74,8 @@ class Pkg:
             source=source,
             name=pyproject["project"]["name"],
             version=version,
-            deps=deps,
-            build_deps=build_deps,
+            deps=set(deps),
+            build_deps=set(build_deps),
             any=dotget(pyproject, "tool.cmeel.any", False),
             pyver=dotget(pyproject, "tool.cmeel.pyver-any", False),
             py3=dotget(pyproject, "tool.cmeel.py3-none", False),
