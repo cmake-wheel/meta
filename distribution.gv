@@ -1,30 +1,33 @@
 digraph {
 	"cmeel-example" [label="cmeel-example
-0.5.3" URL="https://github.com/cmake-wheel/cmeel-example"]
+0.5.4" URL="https://github.com/cmake-wheel/cmeel-example"]
 	cmeel -> "cmeel-example"
 	"cmeel-boost" [label="cmeel-boost
 1.83.0" URL="https://github.com/cmake-wheel/cmeel-boost"]
 	cmeel -> "cmeel-boost"
 	numpy -> "cmeel-boost"
+	numpy -> "cmeel-boost"
 	"cmeel-eigen" [label="cmeel-eigen
-3.4.0.1" URL="https://github.com/cmake-wheel/cmeel-eigen"]
+3.4.0" URL="https://github.com/cmake-wheel/cmeel-eigen"]
 	cmeel -> "cmeel-eigen"
 	eigenpy [label="eigenpy
-3.1.3" URL="https://github.com/cmake-wheel/eigenpy"]
+3.1.3.1" URL="https://github.com/cmake-wheel/eigenpy"]
 	"cmeel-boost" -> eigenpy
 	"cmeel-eigen" -> eigenpy
 	cmeel -> eigenpy
 	"hpp-fcl" [label="hpp-fcl
-2.3.5" URL="https://github.com/cmake-wheel/hpp-fcl"]
+2.3.7" URL="https://github.com/cmake-wheel/hpp-fcl"]
 	"cmeel-assimp" -> "hpp-fcl"
+	"cmeel-boost" -> "hpp-fcl"
 	"cmeel-octomap" -> "hpp-fcl"
+	"cmeel-qhull" -> "hpp-fcl"
 	cmeel -> "hpp-fcl"
 	eigenpy -> "hpp-fcl"
 	"cmeel-assimp" [label="cmeel-assimp
-5.2.5.1" URL="https://github.com/cmake-wheel/cmeel-assimp"]
+5.3.1" URL="https://github.com/cmake-wheel/cmeel-assimp"]
 	cmeel -> "cmeel-assimp"
 	"cmeel-octomap" [label="cmeel-octomap
-1.9.8.2" URL="https://github.com/cmake-wheel/cmeel-octomap"]
+1.9.8" URL="https://github.com/cmake-wheel/cmeel-octomap"]
 	cmeel -> "cmeel-octomap"
 	"cmeel-urdfdom-headers" [label="cmeel-urdfdom-headers
 1.1.0" URL="https://github.com/cmake-wheel/cmeel-urdfdom-headers"]
@@ -36,13 +39,14 @@ digraph {
 	"cmeel-urdfdom-headers" -> "cmeel-urdfdom"
 	cmeel -> "cmeel-urdfdom"
 	"cmeel-console-bridge" [label="cmeel-console-bridge
-1.0.2.2" URL="https://github.com/cmake-wheel/cmeel-console-bridge"]
+1.0.2" URL="https://github.com/cmake-wheel/cmeel-console-bridge"]
 	cmeel -> "cmeel-console-bridge"
 	"cmeel-tinyxml" [label="cmeel-tinyxml
-2.6.2.2" URL="https://github.com/cmake-wheel/cmeel-tinyxml"]
+2.6.2" URL="https://github.com/cmake-wheel/cmeel-tinyxml"]
 	cmeel -> "cmeel-tinyxml"
 	pin [label="pin
 2.6.20" URL="https://github.com/cmake-wheel/pinocchio"]
+	"cmeel-boost" -> pin
 	"cmeel-urdfdom" -> pin
 	cmeel -> pin
 	"hpp-fcl" -> pin
@@ -61,7 +65,7 @@ digraph {
 	"example-robot-data" -> crocoddyl
 	scipy -> crocoddyl
 	eiquadprog [label="eiquadprog
-1.2.6" URL="https://github.com/cmake-wheel/eiquadprog"]
+1.2.7" URL="https://github.com/cmake-wheel/eiquadprog"]
 	"cmeel-boost" -> eiquadprog
 	"cmeel-eigen" -> eiquadprog
 	cmeel -> eiquadprog
@@ -77,13 +81,13 @@ digraph {
 	"cmeel-cppad" -> "cmeel-cppadcodegen"
 	cmeel -> "cmeel-cppadcodegen"
 	"cmeel-simde" [label="cmeel-simde
-0.7.2" URL="https://github.com/cmake-wheel/cmeel-simde"]
+0.7.6" URL="https://github.com/cmake-wheel/cmeel-simde"]
 	cmeel -> "cmeel-simde"
 	"cmeel-lapack" [label="cmeel-lapack
 3.11.0" URL="https://github.com/cmake-wheel/cmeel-lapack"]
 	cmeel -> "cmeel-lapack"
 	"cmeel-qhull" [label="cmeel-qhull
-8.0.1" URL="https://github.com/cmake-wheel/cmeel-qhull"]
+8.0.2" URL="https://github.com/cmake-wheel/cmeel-qhull"]
 	cmeel -> "cmeel-qhull"
 	"cmeel-yaml-cpp" [label="cmeel-yaml-cpp
 0.7.0" URL="https://github.com/cmake-wheel/cmeel-yaml-cpp"]
@@ -95,17 +99,19 @@ digraph {
 9.0.0" URL="https://github.com/cmake-wheel/cmeel-tinyxml2"]
 	cmeel -> "cmeel-tinyxml2"
 	"cmeel-gmp" [label="cmeel-gmp
-6.2.1" URL="https://github.com/cmake-wheel/cmeel-gmp"]
+6.3.0" URL="https://github.com/cmake-wheel/cmeel-gmp"]
 	cmeel -> "cmeel-gmp"
 	"cmeel-texinfo" [label="cmeel-texinfo
 7.0.3" URL="https://github.com/cmake-wheel/cmeel-texinfo"]
+	"cmeel-gettext" -> "cmeel-texinfo"
+	"cmeel-help2man" -> "cmeel-texinfo"
 	cmeel -> "cmeel-texinfo"
 	"cmeel-gperf" [label="cmeel-gperf
 3.1" URL="https://github.com/cmake-wheel/cmeel-gperf"]
 	"cmeel-texinfo" -> "cmeel-gperf"
 	cmeel -> "cmeel-gperf"
 	"cmeel-gettext" [label="cmeel-gettext
-0.22" URL="https://github.com/cmake-wheel/cmeel-gettext"]
+0.22.3" URL="https://github.com/cmake-wheel/cmeel-gettext"]
 	"cmeel-automake" -> "cmeel-gettext"
 	"cmeel-texinfo" -> "cmeel-gettext"
 	cmeel -> "cmeel-gettext"
@@ -124,7 +130,7 @@ digraph {
 5.1.0" URL="https://github.com/cmake-wheel/cmeel-metis"]
 	cmeel -> "cmeel-metis"
 	"cmeel-hwloc" [label="cmeel-hwloc
-2.9.2" URL="https://github.com/cmake-wheel/cmeel-hwloc"]
+2.9.3" URL="https://github.com/cmake-wheel/cmeel-hwloc"]
 	cmeel -> "cmeel-hwloc"
 	"cmeel-spral" [label="cmeel-spral
 2023.03.29" URL="https://github.com/cmake-wheel/cmeel-spral"]
@@ -175,7 +181,7 @@ digraph {
 3.2.1" URL="https://github.com/cmake-wheel/cmeel-qpoases"]
 	cmeel -> "cmeel-qpoases"
 	"cmeel-cddlib" [label="cmeel-cddlib
-0.94.13" URL="https://github.com/cmake-wheel/cmeel-cddlib"]
+0.94m" URL="https://github.com/cmake-wheel/cmeel-cddlib"]
 	cmeel -> "cmeel-cddlib"
 	"cmeel-coinutils" [label="cmeel-coinutils
 2.11.10" URL="https://github.com/cmake-wheel/cmeel-coinutils"]
@@ -185,7 +191,7 @@ digraph {
 	"cmeel-coinutils" -> "cmeel-clp"
 	cmeel -> "cmeel-clp"
 	proxsuite [label="proxsuite
-0.6.0" URL="https://github.com/Simple-Robotics/proxsuite"]
+0.6.1" URL="https://github.com/Simple-Robotics/proxsuite"]
 	cmeel -> proxsuite
 	"cmeel-eigen" -> proxsuite
 	"cmeel-simde" -> proxsuite
