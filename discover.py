@@ -129,7 +129,7 @@ def main(token, orgs):
     dot = graphviz.Digraph(format="svg")
     for repo in repos:
         dot.node(repo.name, label=str(repo), URL=repo.source)
-        for dep in repo.build_deps:
+        for dep in sorted(repo.build_deps):
             dot.edge(dep, repo.name)
     dot.render("distribution.gv")
 
