@@ -9,6 +9,7 @@ from dataclasses import dataclass
 from pprint import pprint
 from subprocess import check_output
 from tomllib import loads
+from typing import List
 
 import graphviz
 import httpx
@@ -36,8 +37,8 @@ class Pkg:
     source: str
     name: str
     version: str
-    deps: [str]
-    build_deps: [str]
+    deps: List[str]
+    build_deps: List[str]
     any: bool
     pyver: bool
     py3: bool
