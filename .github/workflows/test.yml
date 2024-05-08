@@ -6,7 +6,7 @@ on:
 jobs:
   test:
     name: "Test ${{ matrix.py }} on ${{ matrix.os }}"
-    runs-on: "macos-latest"
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: ["ubuntu", "macos-latest", "macos-13"]
