@@ -20,7 +20,7 @@ jobs:
           python-version: ${{ matrix.py }}
       - run: python -m pip install -U pip
       - run: python -m pip install cmeel-boost
-      - run: python -m pip install -i https://testpypi.org/simple eigenpy
+      - run: python -m pip install -i https://test.pypi.org/simple eigenpy
       - run: python test.py
         env:
           PYTHONWARNINGS: error
