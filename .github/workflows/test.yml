@@ -11,15 +11,32 @@ jobs:
     runs-on: "${{ matrix.os }}-latest"
     strategy:
       matrix:
+        arch: ["x86_64", "aarch64", "arm64"]
         os: ["ubuntu", "macos"]
-        py: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        py: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
+        exclude:
+          - os: "macos"
+            arch: "x86_64"
+          - os: "macos"
+            arch: "aarch64"
+          - os: "macos"
+            python: "cp38"
+          - os: "ubuntu"
+            arch: "arm64"
+
     steps:
       - uses: actions/checkout@v4
-
+      - name: Set up QEMU
+        if: matrix.arch == 'aarch64'
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: all
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.py }}
-      - run: python -m pip install crocoddyl tsid ndcurves
+      - run: python -m pip install eigenpy
+        env:
+          PIP_EXTRA_INDEX_URL: https://test.pypi.org/simple/
       - run: python test.py
         env:
           PYTHONWARNINGS: error
