@@ -20,7 +20,7 @@ jobs:
           - os: "macos"
             arch: "aarch64"
           - os: "macos"
-            python: "cp38"
+            py: "cp38"
           - os: "ubuntu"
             arch: "arm64"
 
