@@ -34,7 +34,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.py }}
-      - run: python -m pip install eigenpy coal
+      - run: python -m pip install eigenpy coal-library
       - run: python test.py
         env:
           PYTHONWARNINGS: error
