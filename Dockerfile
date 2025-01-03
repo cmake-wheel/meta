@@ -55,14 +55,14 @@ RUN ${PYTHON} -m simple503 -B file:///wh /wh
 ADD https://api.github.com/repos/cmake-wheel/cmeel-octomap/commits/main .
 RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip wheel --extra-index-url file:///wh -w /wh ${URL}/cmeel-octomap
 
-FROM main as hpp-fcl
+FROM main as coal
 
 COPY --from=assimp /wh /wh
 COPY --from=octomap /wh /wh
 COPY --from=eigenpy /wh /wh
 RUN ${PYTHON} -m simple503 -B file:///wh /wh
-ADD https://api.github.com/repos/cmake-wheel/hpp-fcl/commits/cmeel .
-RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip wheel --extra-index-url file:///wh -w /wh ${URL}/hpp-fcl
+ADD https://api.github.com/repos/cmake-wheel/coal/commits/cmeel .
+RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip wheel --extra-index-url file:///wh -w /wh ${URL}/coal
 
 FROM main as urdfdom-headers
 
@@ -97,7 +97,7 @@ RUN --mount=type=cache,target=/root/.cache ${PYTHON} -m pip wheel --extra-index-
 
 FROM main as pinocchio
 
-COPY --from=hpp-fcl /wh /wh
+COPY --from=coal /wh /wh
 COPY --from=urdfdom /wh /wh
 RUN ${PYTHON} -m simple503 -B file:///wh /wh
 ADD https://api.github.com/repos/cmake-wheel/pinocchio/commits/cmeel .
