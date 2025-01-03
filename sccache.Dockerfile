@@ -85,14 +85,14 @@ RUN --mount=type=cache,target=/root/.cache sccache -s \
  && ${PYTHON} -m pip install --extra-index-url file:///wh /wh/*.whl \
  && ${PYTHON} -m pip wheel --no-build-isolation --extra-index-url file:///wh -w /wh .
 
-FROM main as hpp-fcl
+FROM main as coal
 
 COPY --from=assimp /wh /wh
 COPY --from=octomap /wh /wh
 COPY --from=eigenpy /wh /wh
 COPY --from=qhull /wh /wh
 RUN ${PYTHON} -m simple503 -B file:///wh /wh
-ADD hpp-fcl .
+ADD coal .
 RUN --mount=type=cache,target=/root/.cache sccache -s \
  && ${PYTHON} -m pip install --extra-index-url file:///wh /wh/*.whl \
  && ${PYTHON} -m pip wheel --no-build-isolation --extra-index-url file:///wh -w /wh .
@@ -138,7 +138,7 @@ RUN --mount=type=cache,target=/root/.cache sccache -s \
 
 FROM main as pinocchio
 
-COPY --from=hpp-fcl /wh /wh
+COPY --from=coal /wh /wh
 COPY --from=urdfdom /wh /wh
 RUN ${PYTHON} -m simple503 -B file:///wh /wh
 ADD pinocchio .

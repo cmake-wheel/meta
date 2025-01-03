@@ -11,10 +11,10 @@ class MetaTest(unittest.TestCase):
             abs(eigenpy.Quaternion(1, 2, 3, 4).norm() - 5.47722557505), 1e-7
         )
 
-    # def test_hppfcl(self):
-    # import hppfcl
+    def test_coal(self):
+        import coal
 
-    # self.assertLess(abs(hppfcl.Capsule(2, 3).computeVolume() - 71.2094334814), 1e-7)
+        self.assertLess(abs(coal.Capsule(2, 3).computeVolume() - 71.2094334814), 1e-7)
 
     # def test_pinocchio(self):
     # import pinocchio
