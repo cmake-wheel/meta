@@ -16,13 +16,13 @@ class MetaTest(unittest.TestCase):
 
         self.assertLess(abs(coal.Capsule(2, 3).computeVolume() - 71.2094334814), 1e-7)
 
-    # def test_pinocchio(self):
-    # import pinocchio
+    def test_pinocchio(self):
+        import pinocchio
 
-    # self.assertEqual(
-    # str(pinocchio.SE3.Identity().inverse()),
-    # "  R =\n1 0 0\n0 1 0\n0 0 1\n  p = -0 -0 -0\n",
-    # )
+        self.assertEqual(
+            str(pinocchio.SE3.Identity().inverse()),
+            "  R =\n1 0 0\n0 1 0\n0 0 1\n  p = -0 -0 -0\n",
+        )
 
     # def test_ndcurves(self):
     # import ndcurves
