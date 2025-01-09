@@ -51,11 +51,10 @@ class MetaTest(unittest.TestCase):
 
     # self.assertTrue(hasattr(tsid, "TaskComEquality"))
 
-    # @unittest.skip("need a new release")
-    # def test_crocoddyl(self):
-    # import crocoddyl
+    def test_crocoddyl(self):
+        import crocoddyl
 
-    # self.assertTrue(hasattr(crocoddyl, "ActionDataAbstract"))
+        self.assertTrue(hasattr(crocoddyl, "ActionDataAbstract"))
 
 
 if __name__ == "__main__":
