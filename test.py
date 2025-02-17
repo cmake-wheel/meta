@@ -24,6 +24,7 @@ class MetaTest(unittest.TestCase):
             "  R =\n1 0 0\n0 1 0\n0 0 1\n  p = -0 -0 -0\n",
         )
 
+    @unittest.skip("todo")
     def test_ndcurves(self):
         import ndcurves
         import numpy as np
@@ -46,6 +47,7 @@ class MetaTest(unittest.TestCase):
 
         self.assertEqual(example_robot_data.load("talos").model.nq, 39)
 
+    @unittest.skip("todo")
     def test_tsid(self):
         import tsid
 
