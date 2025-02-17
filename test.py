@@ -24,32 +24,32 @@ class MetaTest(unittest.TestCase):
             "  R =\n1 0 0\n0 1 0\n0 0 1\n  p = -0 -0 -0\n",
         )
 
-    # def test_ndcurves(self):
-    # import ndcurves
-    # import numpy as np
+    def test_ndcurves(self):
+        import ndcurves
+        import numpy as np
 
-    # self.assertTrue(ndcurves.CURVES_WITH_PINOCCHIO_SUPPORT)
-    # rot_init = ndcurves.Quaternion.Identity().matrix()
-    # rot_end = ndcurves.Quaternion(2**0.5 / 2, 2**0.5 / 2, 0, 0).matrix()
-    # waypoints = np.array(
-    # [[1, 2, 3], [4, 5, 6], [4, 5, 6], [4, 5, 6], [4, 5, 6]]
-    # ).transpose()
-    # translation = ndcurves.bezier(waypoints, 0.2, 1.5)
-    # se3 = ndcurves.SE3Curve(translation, rot_init, rot_end)
-    # pw = ndcurves.piecewise_SE3(se3)
-    # self.assertEqual(pw.min(), 0.2)
-    # self.assertEqual(pw.max(), 1.5)
-    # self.assertEqual(pw.dim(), 6)
+        self.assertTrue(ndcurves.CURVES_WITH_PINOCCHIO_SUPPORT)
+        rot_init = ndcurves.Quaternion.Identity().matrix()
+        rot_end = ndcurves.Quaternion(2**0.5 / 2, 2**0.5 / 2, 0, 0).matrix()
+        waypoints = np.array(
+            [[1, 2, 3], [4, 5, 6], [4, 5, 6], [4, 5, 6], [4, 5, 6]]
+        ).transpose()
+        translation = ndcurves.bezier(waypoints, 0.2, 1.5)
+        se3 = ndcurves.SE3Curve(translation, rot_init, rot_end)
+        pw = ndcurves.piecewise_SE3(se3)
+        self.assertEqual(pw.min(), 0.2)
+        self.assertEqual(pw.max(), 1.5)
+        self.assertEqual(pw.dim(), 6)
 
-    # def test_example(self):
-    # import example_robot_data
+    def test_example(self):
+        import example_robot_data
 
-    # self.assertEqual(example_robot_data.load("talos").model.nq, 39)
+        self.assertEqual(example_robot_data.load("talos").model.nq, 39)
 
-    # def test_tsid(self):
-    # import tsid
+    def test_tsid(self):
+        import tsid
 
-    # self.assertTrue(hasattr(tsid, "TaskComEquality"))
+        self.assertTrue(hasattr(tsid, "TaskComEquality"))
 
     def test_crocoddyl(self):
         import crocoddyl
