@@ -42,6 +42,7 @@ class MetaTest(unittest.TestCase):
         self.assertEqual(pw.max(), 1.5)
         self.assertEqual(pw.dim(), 6)
 
+    @unittest.skip("todo 3.13")
     def test_example(self):
         import example_robot_data
 
