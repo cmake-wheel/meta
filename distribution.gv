@@ -3,37 +3,42 @@ digraph {
 0.7.2" URL="https://github.com/cmake-wheel/cmeel-example"]
 	cmeel -> "cmeel-example"
 	"cmeel-boost" [label="cmeel-boost
-1.87.0" URL="https://github.com/cmake-wheel/cmeel-boost"]
+1.89.0" URL="https://github.com/cmake-wheel/cmeel-boost"]
 	cmeel -> "cmeel-boost"
 	numpy -> "cmeel-boost"
 	"cmeel-eigen" [label="cmeel-eigen
-3.4.0" URL="https://github.com/cmake-wheel/cmeel-eigen"]
+3.4.1" URL="https://github.com/cmake-wheel/cmeel-eigen"]
 	cmeel -> "cmeel-eigen"
 	eigenpy [label="eigenpy
-3.10.1" URL="https://github.com/cmake-wheel/eigenpy"]
+3.12.0" URL="https://github.com/cmake-wheel/eigenpy"]
 	cmeel -> eigenpy
 	"cmeel-boost" -> eigenpy
 	"cmeel-eigen" -> eigenpy
+	"jrl-cmakemodules" -> eigenpy
 	scipy -> eigenpy
-	"coal-library" [label="coal-library
-3.0.0" URL="https://github.com/cmake-wheel/coal"]
-	cmeel -> "coal-library"
-	"cmeel-assimp" -> "coal-library"
-	"cmeel-boost" -> "coal-library"
-	"cmeel-octomap" -> "coal-library"
-	"cmeel-qhull" -> "coal-library"
-	eigenpy -> "coal-library"
+	coal [label="coal
+3.0.2" URL="https://github.com/cmake-wheel/coal"]
+	cmeel -> coal
+	"cmeel-assimp" -> coal
+	"cmeel-boost" -> coal
+	"cmeel-eigen" -> coal
+	"cmeel-octomap" -> coal
+	"cmeel-qhull" -> coal
+	eigenpy -> coal
+	"jrl-cmakemodules" -> coal
+	libcoal -> coal
 	"cmeel-assimp" [label="cmeel-assimp
-5.3.1" URL="https://github.com/cmake-wheel/cmeel-assimp"]
+6.0.2" URL="https://github.com/cmake-wheel/cmeel-assimp"]
 	cmeel -> "cmeel-assimp"
+	"cmeel-zlib" -> "cmeel-assimp"
 	"cmeel-octomap" [label="cmeel-octomap
 1.10.0" URL="https://github.com/cmake-wheel/cmeel-octomap"]
 	cmeel -> "cmeel-octomap"
 	"cmeel-urdfdom-headers" [label="cmeel-urdfdom-headers
-1.1.1" URL="https://github.com/cmake-wheel/cmeel-urdfdom-headers"]
+1.1.2" URL="https://github.com/cmake-wheel/cmeel-urdfdom-headers"]
 	cmeel -> "cmeel-urdfdom-headers"
 	"cmeel-urdfdom" [label="cmeel-urdfdom
-4.0.0" URL="https://github.com/cmake-wheel/cmeel-urdfdom"]
+4.0.1" URL="https://github.com/cmake-wheel/cmeel-urdfdom"]
 	cmeel -> "cmeel-urdfdom"
 	"cmeel-console-bridge" -> "cmeel-urdfdom"
 	"cmeel-tinyxml2" -> "cmeel-urdfdom"
@@ -45,49 +50,61 @@ digraph {
 2.6.2" URL="https://github.com/cmake-wheel/cmeel-tinyxml"]
 	cmeel -> "cmeel-tinyxml"
 	pin [label="pin
-3.3.1" URL="https://github.com/cmake-wheel/pinocchio"]
+3.8.0" URL="https://github.com/cmake-wheel/pinocchio"]
 	cmeel -> pin
 	"cmeel-boost" -> pin
 	"cmeel-urdfdom" -> pin
-	"coal-library" -> pin
+	coal -> pin
+	"example-robot-data" -> pin
+	libpinocchio -> pin
 	scipy -> pin
 	"example-robot-data" [label="example-robot-data
-4.2.0" URL="https://github.com/cmake-wheel/example-robot-data"]
+4.4.0" URL="https://github.com/cmake-wheel/example-robot-data"]
 	cmeel -> "example-robot-data"
-	pin -> "example-robot-data"
+	"jrl-cmakemodules" -> "example-robot-data"
 	tsid [label="tsid
-1.7.0" URL="https://github.com/cmake-wheel/tsid"]
+1.9.0" URL="https://github.com/cmake-wheel/tsid"]
 	cmeel -> tsid
+	"cmeel-boost" -> tsid
 	eiquadprog -> tsid
+	libtsid -> tsid
 	pin -> tsid
+	scipy -> tsid
 	crocoddyl [label="crocoddyl
-2.1.0" URL="https://github.com/cmake-wheel/crocoddyl"]
+3.1.0" URL="https://github.com/cmake-wheel/crocoddyl"]
 	cmeel -> crocoddyl
 	"cmeel-boost" -> crocoddyl
-	"example-robot-data" -> crocoddyl
+	"example-robot-data-loaders" -> crocoddyl
+	ipykernel -> crocoddyl
+	libcrocoddyl -> crocoddyl
+	matplotlib -> crocoddyl
+	nbconvert -> crocoddyl
+	nbformat -> crocoddyl
 	scipy -> crocoddyl
 	eiquadprog [label="eiquadprog
-1.2.8" URL="https://github.com/cmake-wheel/eiquadprog"]
+1.3.0" URL="https://github.com/cmake-wheel/eiquadprog"]
 	cmeel -> eiquadprog
 	"cmeel-boost" -> eiquadprog
 	"cmeel-eigen" -> eiquadprog
+	"jrl-cmakemodules" -> eiquadprog
 	ndcurves [label="ndcurves
-1.4.1" URL="https://github.com/cmake-wheel/ndcurves"]
+2.1.0" URL="https://github.com/cmake-wheel/ndcurves"]
 	cmeel -> ndcurves
 	"cmeel-boost" -> ndcurves
+	libndcurves -> ndcurves
 	pin -> ndcurves
 	"cmeel-cppad" [label="cmeel-cppad
-20230000.0" URL="https://github.com/cmake-wheel/cmeel-cppad"]
+20250000.2" URL="https://github.com/cmake-wheel/cmeel-cppad"]
 	cmeel -> "cmeel-cppad"
 	"cmeel-cppadcodegen" [label="cmeel-cppadcodegen
 2.4.3" URL="https://github.com/cmake-wheel/cmeel-cppadcodegen"]
 	cmeel -> "cmeel-cppadcodegen"
 	"cmeel-cppad" -> "cmeel-cppadcodegen"
 	"cmeel-simde" [label="cmeel-simde
-0.7.6" URL="https://github.com/cmake-wheel/cmeel-simde"]
+0.8.2" URL="https://github.com/cmake-wheel/cmeel-simde"]
 	cmeel -> "cmeel-simde"
 	"cmeel-lapack" [label="cmeel-lapack
-3.12.0" URL="https://github.com/cmake-wheel/cmeel-lapack"]
+3.12.1" URL="https://github.com/cmake-wheel/cmeel-lapack"]
 	cmeel -> "cmeel-lapack"
 	"cmeel-qhull" [label="cmeel-qhull
 8.0.2" URL="https://github.com/cmake-wheel/cmeel-qhull"]
@@ -96,10 +113,10 @@ digraph {
 0.8.0" URL="https://github.com/cmake-wheel/cmeel-yaml-cpp"]
 	cmeel -> "cmeel-yaml-cpp"
 	"cmeel-openblas" [label="cmeel-openblas
-0.3.25" URL="https://github.com/cmake-wheel/cmeel-openblas"]
+0.3.29" URL="https://github.com/cmake-wheel/cmeel-openblas"]
 	cmeel -> "cmeel-openblas"
 	"cmeel-tinyxml2" [label="cmeel-tinyxml2
-9.0.0" URL="https://github.com/cmake-wheel/cmeel-tinyxml2"]
+10.0.0" URL="https://github.com/cmake-wheel/cmeel-tinyxml2"]
 	cmeel -> "cmeel-tinyxml2"
 	"cmeel-gmp" [label="cmeel-gmp
 6.3.0" URL="https://github.com/cmake-wheel/cmeel-gmp"]
@@ -131,10 +148,11 @@ digraph {
 	"cmeel-mpfr" -> "cmeel-mpc"
 	"cmeel-texinfo" -> "cmeel-mpc"
 	"cmeel-metis" [label="cmeel-metis
-5.1.0" URL="https://github.com/cmake-wheel/cmeel-metis"]
+5.2.1" URL="https://github.com/cmake-wheel/cmeel-metis"]
 	cmeel -> "cmeel-metis"
+	"cmeel-gklib" -> "cmeel-metis"
 	"cmeel-hwloc" [label="cmeel-hwloc
-2.9.3" URL="https://github.com/cmake-wheel/cmeel-hwloc"]
+2.11.2" URL="https://github.com/cmake-wheel/cmeel-hwloc"]
 	cmeel -> "cmeel-hwloc"
 	"cmeel-spral" [label="cmeel-spral
 2023.03.29" URL="https://github.com/cmake-wheel/cmeel-spral"]
@@ -163,14 +181,10 @@ digraph {
 	"cmeel-m4" [label="cmeel-m4
 1.4.19" URL="https://github.com/cmake-wheel/cmeel-m4"]
 	cmeel -> "cmeel-m4"
-	"cmeel-automake" -> "cmeel-m4"
-	"cmeel-gettext" -> "cmeel-m4"
-	"cmeel-gperf" -> "cmeel-m4"
-	"cmeel-help2man" -> "cmeel-m4"
-	"cmeel-texinfo" -> "cmeel-m4"
 	"cmeel-autoconf" [label="cmeel-autoconf
-2.71" URL="https://github.com/cmake-wheel/cmeel-autoconf"]
+2.72" URL="https://github.com/cmake-wheel/cmeel-autoconf"]
 	cmeel -> "cmeel-autoconf"
+	"cmeel-m4" -> "cmeel-autoconf"
 	"cmeel-automake" [label="cmeel-automake
 1.16.5" URL="https://github.com/cmake-wheel/cmeel-automake"]
 	cmeel -> "cmeel-automake"
@@ -188,7 +202,7 @@ digraph {
 0.94m" URL="https://github.com/cmake-wheel/cmeel-cddlib"]
 	cmeel -> "cmeel-cddlib"
 	"cmeel-coinutils" [label="cmeel-coinutils
-2.11.10" URL="https://github.com/cmake-wheel/cmeel-coinutils"]
+2.11.12" URL="https://github.com/cmake-wheel/cmeel-coinutils"]
 	cmeel -> "cmeel-coinutils"
 	"cmeel-clp" [label="cmeel-clp
 1.17.9.1" URL="https://github.com/cmake-wheel/cmeel-clp"]
@@ -212,12 +226,13 @@ digraph {
 	"cmeel-spirv-headers" [label="cmeel-spirv-headers
 sdk-1.3.261.1" URL="https://github.com/cmake-wheel/cmeel-spirv-headers"]
 	cmeel -> "cmeel-spirv-headers"
-	"cmeel-mim-solvers" [label="cmeel-mim-solvers
-0.0.4" URL="https://github.com/cmake-wheel/mim_solvers"]
-	cmeel -> "cmeel-mim-solvers"
-	"cmeel-boost" -> "cmeel-mim-solvers"
-	crocoddyl -> "cmeel-mim-solvers"
-	proxsuite -> "cmeel-mim-solvers"
+	"mim-solvers" [label="mim-solvers
+0.1.1" URL="https://github.com/cmake-wheel/mim_solvers"]
+	cmeel -> "mim-solvers"
+	"cmeel-boost" -> "mim-solvers"
+	crocoddyl -> "mim-solvers"
+	pin -> "mim-solvers"
+	proxsuite -> "mim-solvers"
 	"cmeel-spirv-tools" [label="cmeel-spirv-tools
 13.1.1" URL="https://github.com/cmake-wheel/cmeel-spirv-tools"]
 	cmeel -> "cmeel-spirv-tools"
@@ -244,8 +259,70 @@ sdk-1.3.261.1" URL="https://github.com/cmake-wheel/cmeel-spirv-headers"]
 2.0" URL="https://github.com/cmake-wheel/cmeel-teaser-plusplus"]
 	cmeel -> "cmeel-teaser-plusplus"
 	"cmeel-eigen" -> "cmeel-teaser-plusplus"
+	"cmeel-gklib" [label="cmeel-gklib
+0.0.1" URL="https://github.com/cmake-wheel/cmeel-gklib"]
+	cmeel -> "cmeel-gklib"
+	"cmeel-zlib" [label="cmeel-zlib
+1.3.1" URL="https://github.com/cmake-wheel/cmeel-zlib"]
+	cmeel -> "cmeel-zlib"
+	libcoal [label="libcoal
+3.0.2" URL="https://github.com/cmake-wheel/libcoal"]
+	cmeel -> libcoal
+	"cmeel-assimp" -> libcoal
+	"cmeel-boost" -> libcoal
+	"cmeel-eigen" -> libcoal
+	"cmeel-octomap" -> libcoal
+	"cmeel-qhull" -> libcoal
+	"jrl-cmakemodules" -> libcoal
+	libpinocchio [label="libpinocchio
+3.8.0" URL="https://github.com/cmake-wheel/libpinocchio"]
+	cmeel -> libpinocchio
+	"cmeel-boost" -> libpinocchio
+	"cmeel-urdfdom" -> libpinocchio
+	libcoal -> libpinocchio
+	scipy -> libpinocchio
+	"jrl-cmakemodules" [label="jrl-cmakemodules
+1.1.0" URL="https://github.com/cmake-wheel/jrl-cmakemodules"]
+	cmeel -> "jrl-cmakemodules"
+	nanoeigenpy [label="nanoeigenpy
+0.0.1" URL="https://github.com/cmake-wheel/nanoeigenpy"]
+	cmeel -> nanoeigenpy
+	"cmeel-eigen" -> nanoeigenpy
+	nanobind -> nanoeigenpy
+	numpy -> nanoeigenpy
+	pytest -> nanoeigenpy
+	scipy -> nanoeigenpy
+	colmpc [label="colmpc
+0.3.0" URL="https://github.com/cmake-wheel/colmpc"]
+	cmeel -> colmpc
+	"cmeel-boost" -> colmpc
+	crocoddyl -> colmpc
+	"mim-solvers" -> colmpc
+	numdifftools -> colmpc
+	"example-robot-data-loaders" [label="example-robot-data-loaders
+4.4.0" URL="https://github.com/cmake-wheel/example-robot-data-loaders"]
+	cmeel -> "example-robot-data-loaders"
+	"example-robot-data" -> "example-robot-data-loaders"
+	pin -> "example-robot-data-loaders"
+	libcrocoddyl [label="libcrocoddyl
+3.1.0" URL="https://github.com/cmake-wheel/libcrocoddyl"]
+	cmeel -> libcrocoddyl
+	"cmeel-boost" -> libcrocoddyl
+	"example-robot-data" -> libcrocoddyl
+	libpinocchio -> libcrocoddyl
+	libtsid [label="libtsid
+1.9.0" URL="https://github.com/cmake-wheel/libtsid"]
+	cmeel -> libtsid
+	"cmeel-boost" -> libtsid
+	eiquadprog -> libtsid
+	libpinocchio -> libtsid
+	libndcurves [label="libndcurves
+2.1.0" URL="https://github.com/cmake-wheel/libndcurves"]
+	cmeel -> libndcurves
+	"cmeel-boost" -> libndcurves
+	libpinocchio -> libndcurves
 	proxsuite [label="proxsuite
-0.7.1" URL="https://github.com/Simple-Robotics/proxsuite"]
+0.7.2" URL="https://github.com/Simple-Robotics/proxsuite"]
 	cmeel -> proxsuite
 	"cmeel-eigen" -> proxsuite
 	"cmeel-simde" -> proxsuite
