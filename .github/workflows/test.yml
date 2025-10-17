@@ -19,7 +19,7 @@ jobs:
             python: "cp38"
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: echo "${{ matrix.python }}" | sed "s/cp3/PYTHON_VERSION=3./" >> "${GITHUB_ENV}"
       - uses: actions/setup-python@v5
         with:
