@@ -1,0 +1,14 @@
+[project]
+name = "meta"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+  "crocoddyl>=3.1.0",
+  "graphviz>=0.21",
+  "httpx>=0.28.1",
+  "ndcurves>=2.1.0",
+  "pin>=3.8.0",
+  "tsid>=1.9.0"
+]
