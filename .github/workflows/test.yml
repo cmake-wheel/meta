@@ -12,19 +12,25 @@ jobs:
     runs-on: "${{ matrix.os }}"
     strategy:
       matrix:
-        os: ["ubuntu-24.04", "ubuntu-24.04-arm", "macos-13", "macos-14"]
-        python: ["cp38", "cp39", "cp310", "cp311", "cp312", "cp313"]
-        exclude:
-          - os: "macos-14"
-            python: "cp38"
+        os: ["ubuntu-24.04", "ubuntu-24.04-arm", "macos-15-intel", "macos-15"]
+        python: ["3.9", "3.10", "3.11", "3.12", "3.13", "3.14"]
 
     steps:
       - uses: actions/checkout@v5
-      - run: echo "${{ matrix.python }}" | sed "s/cp3/PYTHON_VERSION=3./" >> "${GITHUB_ENV}"
-      - uses: actions/setup-python@v6
+      - name: Install uv and set the Python version
+        uses: astral-sh/setup-uv@v6
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
-      - run: python -m pip install eigenpy coal-library pin crocoddyl tsid ndcurves
-      - run: python test.py
-        #env:
-          #PYTHONWARNINGS: error
+          python-version: ${{ matrix.python-version }}
+      - run: uv run test.py
+
+  check:
+    if: always()
+    name: check-macos-linux
+    needs:
+      - test
+    runs-on: Ubuntu-latest
+    steps:
+      - name: Decide whether the needed jobs succeeded or failed
+        uses: re-actors/alls-green@release/v1
+        with:
+          jobs: ${{ toJSON(needs) }}

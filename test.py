@@ -34,7 +34,7 @@ class MetaTest(unittest.TestCase):
         waypoints = np.array(
             [[1, 2, 3], [4, 5, 6], [4, 5, 6], [4, 5, 6], [4, 5, 6]]
         ).transpose()
-        translation = ndcurves.bezier(waypoints, 0.2, 1.5)
+        translation = ndcurves.bezier3(waypoints, 0.2, 1.5)
         se3 = ndcurves.SE3Curve(translation, rot_init, rot_end)
         pw = ndcurves.piecewise_SE3(se3)
         self.assertEqual(pw.min(), 0.2)
