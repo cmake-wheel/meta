@@ -7,11 +7,10 @@ import os
 from base64 import b64decode
 from dataclasses import dataclass
 from subprocess import check_output
-from tomllib import loads
-from typing import Set
 
 import graphviz
 import httpx
+from tomllib import loads
 
 API = "https://api.github.com"
 ORGS = [
@@ -36,8 +35,8 @@ class Pkg:
     source: str
     name: str
     version: str
-    deps: Set[str]
-    build_deps: Set[str]
+    deps: set[str]
+    build_deps: set[str]
     any: bool
     pyver: bool
     py3: bool
