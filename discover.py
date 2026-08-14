@@ -42,7 +42,7 @@ class Pkg:
     py3: bool
 
     def __str__(self):
-        return "\n".join([self.name, self.version, self.special()]).strip()
+        return f"{self.name}\n{self.version}\n{self.special()}".strip()
 
     def special(self) -> str:
         if self.any:
