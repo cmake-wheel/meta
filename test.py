@@ -17,10 +17,10 @@ class MetaTest(unittest.TestCase):
         self.assertLess(abs(coal.Capsule(2, 3).computeVolume() - 71.2094334814), 1e-7)
 
     def test_pinocchio(self):
-        import pinocchio
+        import pinocchio as pin
 
         self.assertEqual(
-            str(pinocchio.SE3.Identity().inverse()),
+            str(pin.SE3.Identity().inverse()),
             "  R =\n1 0 0\n0 1 0\n0 0 1\n  p = -0 -0 -0\n",
         )
 
@@ -53,8 +53,11 @@ class MetaTest(unittest.TestCase):
 
     def test_crocoddyl(self):
         import crocoddyl
+        import pinocchio as pin
 
         self.assertTrue(hasattr(crocoddyl, "ActionDataAbstract"))
+        m = pin.buildSampleModelManipulator()
+        crocoddyl.ResidualModelControlGrav(crocoddyl.StateMultibody(m))
 
 
 if __name__ == "__main__":
